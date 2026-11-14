@@ -6,6 +6,7 @@
     "shopify": "shopify app dev",
     "build": "remix vite:build",
     "dev": "remix vite:dev --host 0.0.0.0",
+    "start": "remix-serve ./build/server/index.js",
     "lint": "eslint . --ext .ts,.tsx",
     "typecheck": "tsc --noEmit"
   },
