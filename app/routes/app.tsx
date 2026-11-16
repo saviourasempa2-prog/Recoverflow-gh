@@ -2,6 +2,7 @@ import { Link, Outlet, useLocation } from "@remix-run/react";
 import { Text } from "@shopify/polaris";
 
 const navItems = [
+  { label: "Dashboard", to: "/app" },
   { label: "Automations", to: "/app/automations" },
   { label: "Abandoned Carts", to: "/app/carts" },
 ];
