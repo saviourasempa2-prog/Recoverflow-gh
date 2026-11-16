@@ -27,10 +27,17 @@ if (!integrations.paystackEnabled || !integrations.arkeselEnabled) {
   console.warn("Paystack/Arkesel not configured yet");
 }
 
+// Shopify's appUrl is the public origin; /app is the embedded app route and
+// /auth/callback is handled by the auth.$ splat route.
+const configuredAppUrl = process.env.SHOPIFY_APP_URL?.trim();
+const appUrl = new URL(
+  configuredAppUrl || "https://recoverflow-gh.onrender.com",
+).origin;
+
 const shopify = shopifyApp({
   apiKey: process.env.SHOPIFY_API_KEY || "",
   apiSecretKey: process.env.SHOPIFY_API_SECRET || "",
-  appUrl: process.env.SHOPIFY_APP_URL || "",
+  appUrl,
   scopes: ["read_checkouts", "write_checkouts", "read_orders"],
   authPathPrefix: "/auth",
   sessionStorage,
