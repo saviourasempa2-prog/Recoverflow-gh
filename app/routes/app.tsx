@@ -1,14 +1,43 @@
-import { Link, Outlet, useLocation } from "@remix-run/react";
+import { json, redirect } from "@remix-run/node";
+import { Link, Outlet, useLoaderData, useLocation } from "@remix-run/react";
 import { Text } from "@shopify/polaris";
 
-const navItems = [
-  { label: "Dashboard", to: "/app" },
-  { label: "Automations", to: "/app/automations" },
-  { label: "Abandoned Carts", to: "/app/carts" },
-];
+import { authenticate } from "../shopify.server";
+
+export async function loader({ request }: { request: Request }) {
+  const { session } = await authenticate.admin(request);
+
+  const adminShops = (process.env.ADMIN_SHOPS ?? "")
+    .split(",")
+    .map((shop) => shop.trim().toLowerCase())
+    .filter(Boolean);
+
+  const currentShop = String(session?.shop ?? "").trim().toLowerCase();
+
+  return json({
+    isAdmin: adminShops.includes(currentShop),
+    currentShop,
+  });
+}
 
 export default function AppLayout() {
+  const { isAdmin } = useLoaderData<typeof loader>();
   const location = useLocation();
+
+  const navItems = [
+    { label: "Dashboard", to: "/app" },
+    { label: "Abandoned Cart", to: "/app/carts" },
+    { label: "Automation", to: "/app/automations" },
+    ...(isAdmin ? [{ label: "Settings", to: "/app/settings" }] : []),
+  ];
+
+  const isActiveLink = (to: string) => {
+    if (to === "/app") {
+      return location.pathname === "/app" || location.pathname === "/app/";
+    }
+
+    return location.pathname === to || location.pathname.startsWith(`${to}/`);
+  };
 
   return (
     <div className="recoverflow-shell">
@@ -21,7 +50,7 @@ export default function AppLayout() {
         </div>
         <nav className="recoverflow-nav">
           {navItems.map((item) => {
-            const isActive = location.pathname === item.to;
+            const isActive = isActiveLink(item.to);
             return (
               <Link
                 key={item.to}
@@ -38,7 +67,7 @@ export default function AppLayout() {
 
       <nav className="recoverflow-mobile-nav" aria-label="RecoverFlow navigation">
         {navItems.map((item) => {
-          const isActive = location.pathname === item.to;
+          const isActive = isActiveLink(item.to);
           return (
             <Link
               key={item.to}
