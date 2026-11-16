@@ -13,11 +13,9 @@ export async function loader({ request }: { request: Request }) {
     .filter(Boolean);
 
   const currentShop = String(session?.shop ?? "").trim().toLowerCase();
+  const isAdmin = adminShops.includes(currentShop);
 
-  return json({
-    isAdmin: adminShops.includes(currentShop),
-    currentShop,
-  });
+  return json({ isAdmin, currentShop });
 }
 
 export default function AppLayout() {
