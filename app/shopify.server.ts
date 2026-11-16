@@ -44,5 +44,6 @@ const shopify = shopifyApp({
 });
 
 export const authenticate = shopify.authenticate;
+export const login = shopify.login;
 
 export default shopify;
