@@ -1,6 +1,4 @@
-import { useState } from "react";
-import { AppProvider } from "@shopify/polaris";
-import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "@remix-run/react";
+import { Links, Meta, Outlet, Scripts, ScrollRestoration, LiveReload } from "@remix-run/react";
 import type { LinksFunction } from "@remix-run/node";
 
 import appStylesHref from "./styles/app.css?url";
@@ -8,8 +6,6 @@ import appStylesHref from "./styles/app.css?url";
 export const links: LinksFunction = () => [{ rel: "stylesheet", href: appStylesHref }];
 
 export default function App() {
-  const [polarisLocale] = useState({});
-
   return (
     <html lang="en">
       <head>
@@ -19,11 +15,10 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <AppProvider i18n={polarisLocale as any}>
-          <Outlet />
-        </AppProvider>
+        <Outlet />
         <ScrollRestoration />
         <Scripts />
+        <LiveReload />
       </body>
     </html>
   );
