@@ -18,3 +18,107 @@ a {
 button {
   font: inherit;
 }
+
+.recoverflow-shell {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  background: #f6f6f7;
+}
+
+.recoverflow-sidebar {
+  flex: 0 0 260px;
+  background: #111111;
+  color: #ffffff;
+  padding: 24px 20px;
+}
+
+.recoverflow-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+
+.recoverflow-logo {
+  display: flex;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #32d583;
+  color: #111111;
+  font-weight: 700;
+}
+
+.recoverflow-nav {
+  display: grid;
+  gap: 8px;
+}
+
+.recoverflow-nav-link {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: #d1d5db;
+  font-weight: 500;
+}
+
+.recoverflow-nav-link.is-active {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.recoverflow-mobile-nav {
+  display: none;
+}
+
+.recoverflow-content {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 32px;
+  overflow-x: auto;
+}
+
+@media (max-width: 640px) {
+  .recoverflow-shell {
+    display: block;
+    min-height: 100vh;
+  }
+
+  .recoverflow-sidebar {
+    display: none;
+  }
+
+  .recoverflow-mobile-nav {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    display: flex;
+    gap: 8px;
+    padding: 10px 12px;
+    overflow-x: auto;
+    background: #111111;
+  }
+
+  .recoverflow-mobile-nav-link {
+    flex: 0 0 auto;
+    padding: 9px 12px;
+    border-radius: 8px;
+    color: #d1d5db;
+    font-size: 14px;
+  }
+
+  .recoverflow-mobile-nav-link.is-active {
+    background: rgba(255, 255, 255, 0.14);
+    color: #ffffff;
+  }
+
+  .recoverflow-content {
+    width: 100%;
+    padding: 16px 12px;
+  }
+}
