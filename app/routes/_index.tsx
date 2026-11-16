@@ -1,5 +1,9 @@
-import { Navigate } from "@remix-run/react";
+import { redirect } from "@remix-run/node";
+
+export function loader() {
+  return redirect("/app");
+}
 
 export default function RootIndex() {
-  return <Navigate to="/app" replace />;
+  return null;
 }
