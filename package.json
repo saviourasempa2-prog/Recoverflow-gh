@@ -18,12 +18,14 @@
     "@shopify/shopify-app-remix": "^3.1.0",
     "@shopify/shopify-app-session-storage-memory": "^6.0.1",
     "@shopify/shopify-app-session-storage-postgresql": "^6.0.1",
+    "pg": "^8.13.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@remix-run/dev": "^2.15.0",
     "@types/node": "^20.11.30",
+    "@types/pg": "^8.11.10",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "typescript": "^5.4.5",
