@@ -1,4 +1,5 @@
 import { json, redirect, type LoaderFunctionArgs } from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
 
 const SHOPIFY_APP_STORE_URL = "https://apps.shopify.com/recoverflow";
 
@@ -14,14 +15,14 @@ export async function loader({ request }: LoaderFunctionArgs) {
 }
 
 export default function AuthInstallRoute() {
-  const { appStoreUrl } = ({} as any);
+  const { appStoreUrl } = useLoaderData<typeof loader>();
 
   return (
     <main className="recoverflow-install-shell">
       <div className="recoverflow-install-card">
-        <span className="recoverflow-badge">Shopify app install</span>
+        <div className="recoverflow-badge">Installation</div>
         <h1>Install RecoverFlow</h1>
-        <p>Bring back lost sales with smart recovery automations and faster follow-up.</p>
+        <p>Recover lost checkout sales with smart follow-ups designed for Shopify merchants.</p>
         <a className="recoverflow-primary-button" href={appStoreUrl} target="_blank" rel="noreferrer">
           Install via Shopify App Store
         </a>

@@ -1,6 +1,13 @@
 import { Card, Grid, Page, Text, Badge } from "@shopify/polaris";
 
 export default function DashboardPage() {
+  const summaryMetrics = [
+    { label: "Recovered Revenue", value: "GH₵ 0.00", tone: "purple" },
+    { label: "Abandoned Carts", value: "0", tone: "green" },
+    { label: "Recovered Orders", value: "0", tone: "blue" },
+    { label: "Recovery Rate", value: "0%", tone: "orange" },
+  ];
+
   const statuses = [
     { label: "Email", value: "ON" },
     { label: "WhatsApp", value: "ON" },
@@ -12,44 +19,20 @@ export default function DashboardPage() {
   return (
     <Page title="RecoverFlow Dashboard">
       <Grid>
-        <Grid.Cell columnSpan={{ xs: 6, sm: 3, md: 3, lg: 3 }}>
-          <Card>
-            <div style={{ padding: "16px" }}>
-              <Text as="p" variant="bodyMd" tone="subdued">
-                Recovered Revenue
-              </Text>
-              <Text as="h2" variant="heading2xl">
-                GH₵ 0.00
-              </Text>
-            </div>
-          </Card>
-        </Grid.Cell>
-
-        <Grid.Cell columnSpan={{ xs: 6, sm: 3, md: 3, lg: 3 }}>
-          <Card>
-            <div style={{ padding: "16px" }}>
-              <Text as="p" variant="bodyMd" tone="subdued">
-                Carts Recovered
-              </Text>
-              <Text as="h2" variant="heading2xl">
-                0
-              </Text>
-            </div>
-          </Card>
-        </Grid.Cell>
-
-        <Grid.Cell columnSpan={{ xs: 6, sm: 3, md: 3, lg: 3 }}>
-          <Card>
-            <div style={{ padding: "16px" }}>
-              <Text as="p" variant="bodyMd" tone="subdued">
-                Recovered Orders
-              </Text>
-              <Text as="h2" variant="heading2xl">
-                0
-              </Text>
-            </div>
-          </Card>
-        </Grid.Cell>
+        {summaryMetrics.map((metric) => (
+          <Grid.Cell key={metric.label} columnSpan={{ xs: 6, sm: 3, md: 3, lg: 3 }}>
+            <Card className={`recoverflow-metric-card recoverflow-metric-${metric.tone}`}>
+              <div style={{ padding: "16px" }}>
+                <Text as="p" variant="bodyMd" tone="subdued">
+                  {metric.label}
+                </Text>
+                <Text as="h2" variant="heading2xl">
+                  {metric.value}
+                </Text>
+              </div>
+            </Card>
+          </Grid.Cell>
+        ))}
       </Grid>
 
       <div style={{ marginTop: 24 }}>

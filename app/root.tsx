@@ -1,11 +1,11 @@
-import { Links, Meta, Outlet, Scripts, ScrollRestoration, LiveReload } from "@remix-run/react";
 import type { LinksFunction } from "@remix-run/node";
+import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from "@remix-run/react";
 
 import appStylesHref from "./styles/app.css?url";
 
 export const links: LinksFunction = () => [{ rel: "stylesheet", href: appStylesHref }];
 
-export default function App() {
+export default function AppRoot() {
   return (
     <html lang="en">
       <head>

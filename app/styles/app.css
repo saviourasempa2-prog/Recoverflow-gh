@@ -1,9 +1,12 @@
 html, body {
   margin: 0;
   padding: 0;
-  background: #f5f5f5;
-  color: #111827;
   font-family: Inter, "Segoe UI", sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(139, 92, 246, 0.18), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(16, 185, 129, 0.12), transparent 24%),
+    #f5f7ff;
+  color: #141726;
 }
 
 * {
@@ -15,42 +18,53 @@ a {
   text-decoration: none;
 }
 
-button {
+button,
+input {
   font: inherit;
 }
 
 .recoverflow-shell {
   display: flex;
   min-height: 100vh;
-  width: 100%;
-  background: #f6f6f7;
+  background: linear-gradient(180deg, #f7f6ff 0%, #eef7ff 100%);
 }
 
 .recoverflow-sidebar {
   flex: 0 0 260px;
-  background: #111111;
-  color: #ffffff;
-  padding: 24px 20px;
+  background: linear-gradient(180deg, #111827 0%, #1f2937 100%);
+  color: #fff;
+  padding: 24px 18px;
 }
 
 .recoverflow-brand {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 32px;
+  gap: 12px;
+  margin-bottom: 24px;
 }
 
 .recoverflow-logo {
   display: flex;
-  width: 32px;
-  height: 32px;
-  flex: 0 0 32px;
   align-items: center;
   justify-content: center;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
-  background: #32d583;
-  color: #111111;
-  font-weight: 700;
+  background: linear-gradient(135deg, #34d399 0%, #8b5cf6 100%);
+  color: #0f172a;
+  font-weight: 800;
+}
+
+.recoverflow-shop-chip {
+  margin-bottom: 20px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #dbeafe;
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .recoverflow-nav {
@@ -58,18 +72,26 @@ button {
   gap: 8px;
 }
 
-.recoverflow-nav-link {
-  display: block;
+.recoverflow-nav-link,
+.recoverflow-mobile-nav-link {
+  display: flex;
+  align-items: center;
   padding: 10px 12px;
-  border-radius: 8px;
-  color: #d1d5db;
-  font-weight: 500;
+  border-radius: 10px;
+  color: #dbeafe;
+  font-weight: 600;
+  transition: all 0.2s ease;
 }
 
-.recoverflow-nav-link.is-active {
-  background: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
-  font-weight: 600;
+.recoverflow-nav-link:hover,
+.recoverflow-mobile-nav-link:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.recoverflow-nav-link.is-active,
+.recoverflow-mobile-nav-link.is-active {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.28), rgba(52, 211, 153, 0.2));
+  color: #fff;
 }
 
 .recoverflow-mobile-nav {
@@ -77,16 +99,254 @@ button {
 }
 
 .recoverflow-content {
-  flex: 1 1 auto;
+  flex: 1;
   min-width: 0;
   padding: 32px;
-  overflow-x: auto;
+}
+
+.recoverflow-metric-card {
+  border: 1px solid rgba(139, 92, 246, 0.08) !important;
+  background: rgba(255, 255, 255, 0.7) !important;
+  border-radius: 18px !important;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
+}
+
+.recoverflow-metric-purple {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.11), rgba(167, 139, 250, 0.03)) !important;
+}
+
+.recoverflow-metric-green {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.12), rgba(52, 211, 153, 0.03)) !important;
+}
+
+.recoverflow-metric-blue {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.12), rgba(96, 165, 250, 0.03)) !important;
+}
+
+.recoverflow-metric-orange {
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.12), rgba(251, 146, 60, 0.03)) !important;
+}
+
+.recoverflow-landing,
+.recoverflow-install-shell,
+.recoverflow-admin-shell {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 32px 16px;
+  background:
+    radial-gradient(circle at top, rgba(139, 92, 246, 0.2), transparent 30%),
+    linear-gradient(180deg, #f9fafb 0%, #eef6ff 100%);
+}
+
+.recoverflow-hero-card,
+.recoverflow-install-card,
+.recoverflow-admin-card {
+  width: min(720px, 100%);
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 28px;
+  box-shadow: 0 28px 60px rgba(15, 23, 42, 0.08);
+  padding: 40px 32px;
+  backdrop-filter: blur(6px);
+}
+
+.recoverflow-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: rgba(139, 92, 246, 0.12);
+  color: #5b21b6;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.recoverflow-hero-card h1,
+.recoverflow-install-card h1,
+.recoverflow-admin-card h1 {
+  margin: 16px 0 12px;
+  font-size: clamp(2.3rem, 4vw, 4rem);
+  line-height: 1.08;
+}
+
+.recoverflow-hero-card p,
+.recoverflow-install-card p,
+.recoverflow-admin-card p {
+  margin: 0 0 20px;
+  color: #475569;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.recoverflow-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.recoverflow-primary-button,
+.recoverflow-secondary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 24px;
+  border-radius: 12px;
+  font-weight: 700;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.recoverflow-primary-button {
+  background: linear-gradient(135deg, #8b5cf6 0%, #10b981 100%);
+  color: white;
+  box-shadow: 0 16px 30px rgba(139, 92, 246, 0.25);
+}
+
+.recoverflow-secondary-button {
+  background: rgba(15, 23, 42, 0.04);
+  color: #0f172a;
+}
+
+.recoverflow-primary-button:hover,
+.recoverflow-secondary-button:hover {
+  transform: translateY(-1px);
+}
+
+.recoverflow-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 28px;
+}
+
+.recoverflow-feature-card {
+  padding: 18px 16px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(237, 233, 254, 0.8));
+  border: 1px solid rgba(139, 92, 246, 0.08);
+}
+
+.recoverflow-feature-card strong {
+  display: block;
+  margin-bottom: 6px;
+  color: #111827;
+}
+
+.recoverflow-feature-card span {
+  color: #475569;
+  font-size: 14px;
+}
+
+.recoverflow-admin-card {
+  width: min(900px, 100%);
+}
+
+.recoverflow-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.recoverflow-status-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(16, 185, 129, 0.12);
+  color: #047857;
+  font-weight: 700;
+}
+
+.recoverflow-metric-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.recoverflow-metric-card.accent-purple,
+.recoverflow-metric-card.accent-green,
+.recoverflow-metric-card.accent-blue,
+.recoverflow-metric-card.accent-orange {
+  padding: 18px 16px;
+  border-radius: 18px;
+  background: #fff;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  box-shadow: 0 10px 18px rgba(15, 23, 42, 0.04);
+}
+
+.recoverflow-metric-card.accent-purple { background: linear-gradient(135deg, rgba(139,92,246,0.12), rgba(255,255,255,0.86)); }
+.recoverflow-metric-card.accent-green { background: linear-gradient(135deg, rgba(16,185,129,0.12), rgba(255,255,255,0.86)); }
+.recoverflow-metric-card.accent-blue { background: linear-gradient(135deg, rgba(59,130,246,0.12), rgba(255,255,255,0.86)); }
+.recoverflow-metric-card.accent-orange { background: linear-gradient(135deg, rgba(249,115,22,0.12), rgba(255,255,255,0.86)); }
+
+.recoverflow-metric-card span {
+  display: block;
+  color: #475569;
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+.recoverflow-metric-card strong {
+  font-size: clamp(1.3rem, 2vw, 2rem);
+}
+
+.recoverflow-table-card {
+  background: rgba(255,255,255,0.78);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 18px;
+  padding: 20px 18px;
+}
+
+.recoverflow-table-card h2 {
+  margin-bottom: 12px;
+}
+
+.recoverflow-table-card ul {
+  margin: 0;
+  padding-left: 18px;
+  color: #334155;
+  line-height: 1.8;
+}
+
+.recoverflow-admin-auth label {
+  display: block;
+  margin: 18px 0 8px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.recoverflow-admin-auth input {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 14px;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  border-radius: 12px;
+  background: rgba(255,255,255,0.8);
+}
+
+.recoverflow-inline-error {
+  margin: 12px 0 0;
+  color: #b91c1c;
+  font-weight: 600;
+}
+
+.full-width {
+  width: 100%;
+  margin-top: 18px;
+  border: none;
+  cursor: pointer;
 }
 
 @media (max-width: 640px) {
   .recoverflow-shell {
     display: block;
-    min-height: 100vh;
   }
 
   .recoverflow-sidebar {
@@ -96,29 +356,30 @@ button {
   .recoverflow-mobile-nav {
     position: sticky;
     top: 0;
-    z-index: 2;
+    z-index: 3;
     display: flex;
     gap: 8px;
-    padding: 10px 12px;
+    padding: 12px;
     overflow-x: auto;
-    background: #111111;
-  }
-
-  .recoverflow-mobile-nav-link {
-    flex: 0 0 auto;
-    padding: 9px 12px;
-    border-radius: 8px;
-    color: #d1d5db;
-    font-size: 14px;
-  }
-
-  .recoverflow-mobile-nav-link.is-active {
-    background: rgba(255, 255, 255, 0.14);
-    color: #ffffff;
+    background: linear-gradient(180deg, #111827 0%, #1f2937 100%);
   }
 
   .recoverflow-content {
-    width: 100%;
-    padding: 16px 12px;
+    padding: 18px 12px 24px;
+  }
+
+  .recoverflow-feature-grid,
+  .recoverflow-metric-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .recoverflow-hero-card,
+  .recoverflow-install-card,
+  .recoverflow-admin-card {
+    padding: 24px 18px;
+  }
+
+  .recoverflow-header-row {
+    display: block;
   }
 }

@@ -7,10 +7,6 @@ const sessionStorage = databaseUrl
   ? new PostgreSQLSessionStorage(databaseUrl)
   : new MemorySessionStorage();
 
-if (!databaseUrl) {
-  console.warn("DATABASE_URL is not configured; using in-memory Shopify sessions.");
-}
-
 function isConfigured(value: string | undefined): boolean {
   const normalized = value?.trim();
   return Boolean(normalized) && normalized?.toUpperCase() !== "PASTE_LATER";
@@ -23,16 +19,8 @@ export const integrations = {
   arkeselEnabled: isConfigured(process.env.ARKESEL_API_KEY),
 };
 
-if (!integrations.paystackEnabled || !integrations.arkeselEnabled) {
-  console.warn("Paystack/Arkesel not configured yet");
-}
-
-// Shopify's appUrl is the public origin; /app is the embedded app route and
-// /auth/callback is handled by the auth.$ splat route.
 const configuredAppUrl = process.env.SHOPIFY_APP_URL?.trim();
-const appUrl = new URL(
-  configuredAppUrl || "https://recoverflow-gh.onrender.com",
-).origin;
+const appUrl = new URL(configuredAppUrl || "https://recoverflow-gh.onrender.com").origin;
 
 const shopify = shopifyApp({
   apiKey: process.env.SHOPIFY_API_KEY || "",
