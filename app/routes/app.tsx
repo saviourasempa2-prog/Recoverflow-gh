@@ -8,8 +8,9 @@ export async function loader({ request }: LoaderFunctionArgs) {
   const url = new URL(request.url);
   const { session } = await authenticate.admin(request);
   const billingPath = url.pathname === "/app/billing" || url.pathname.startsWith("/app/billing/");
+  const settingsPath = url.pathname === "/app/settings" || url.pathname.startsWith("/app/settings/");
   const currentPlan = await getMerchantPlan(session.shop);
-  if (!currentPlan && !billingPath) throw redirect("/app/billing");
+  if (!currentPlan && !billingPath && !settingsPath) throw redirect("/app/settings");
   return json({ shop: session.shop, currentPlanName: currentPlan?.name ?? null });
 }
 
@@ -18,9 +19,9 @@ export default function AppLayout() {
   const location = useLocation();
   const navItems = [
     { label: "Dashboard", to: "/app" },
-    { label: "Plans", to: "/app/billing" },
     { label: "Abandoned Cart", to: "/app/carts" },
     { label: "Automation", to: "/app/automations" },
+    { label: "Settings", to: "/app/settings" },
   ];
   const active = (to: string) => to === "/app"
     ? location.pathname === "/app" || location.pathname === "/app/"
